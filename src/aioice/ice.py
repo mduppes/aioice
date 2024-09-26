@@ -887,6 +887,7 @@ class Connection:
         # gather host candidates
         start_port = CUSTOM_PORT
         host_protocols = []
+        aaaaa
         for address in addresses:
             # create transport
             try:
