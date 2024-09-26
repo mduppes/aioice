@@ -29,6 +29,7 @@ protocol_id = count()
 
 _mdns = threading.local()
 
+CUSTOM_PORT = 30123
 
 class TransportPolicy(enum.Enum):
     ALL = 0
@@ -889,7 +890,7 @@ class Connection:
             # create transport
             try:
                 transport, protocol = await loop.create_datagram_endpoint(
-                    lambda: StunProtocol(self), local_addr=(address, 0)
+                    lambda: StunProtocol(self), local_addr=(address, CUSTOM_PORT)
                 )
                 sock = transport.get_extra_info("socket")
                 if sock is not None:
