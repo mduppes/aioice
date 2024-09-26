@@ -44,6 +44,7 @@ class TransportPolicy(enum.Enum):
     will be considered.
     """
 
+aaaaa
 
 async def get_or_create_mdns_protocol(subscriber: object) -> mdns.MDnsProtocol:
     if not hasattr(_mdns, "lock"):
@@ -896,6 +897,7 @@ class Connection:
                 )
                 start_port = start_port + 1
                 logger.info(f"Opening UDP port: {start_port}")
+                print("MDUPPES")
                 sock = transport.get_extra_info("socket")
                 if sock is not None:
                     sock.setsockopt(
