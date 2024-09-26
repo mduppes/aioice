@@ -892,6 +892,7 @@ class Connection:
                 transport, protocol = await loop.create_datagram_endpoint(
                     lambda: StunProtocol(self), local_addr=(address, CUSTOM_PORT)
                 )
+                logger.warn(f"Opening UDP port: {CUSTOM_PORT}")
                 sock = transport.get_extra_info("socket")
                 if sock is not None:
                     sock.setsockopt(
