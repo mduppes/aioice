@@ -885,14 +885,16 @@ class Connection:
         loop = asyncio.get_event_loop()
 
         # gather host candidates
+        start_port = CUSTOM_PORT
         host_protocols = []
         for address in addresses:
             # create transport
             try:
                 transport, protocol = await loop.create_datagram_endpoint(
-                    lambda: StunProtocol(self), local_addr=(address, CUSTOM_PORT)
+                    lambda: StunProtocol(self), local_addr=(address, start_port)
                 )
-                logger.warn(f"Opening UDP port: {CUSTOM_PORT}")
+                start_port = start_port + 1
+                logger.info(f"Opening UDP port: {start_port}")
                 sock = transport.get_extra_info("socket")
                 if sock is not None:
                     sock.setsockopt(
